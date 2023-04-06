@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+use App\Entity\Projets;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -13,7 +14,7 @@ class adminController extends AbstractDashboardController
     #[Route('/admin', name: 'admin', methods:['GET', 'POST'])]
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('admin/index.html.twig');
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -41,6 +42,7 @@ class adminController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Projects', 'fas fa-list', Projets::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
